@@ -1,0 +1,28 @@
+pipeline{
+agent any
+tools{
+        maven"maven3.8.6"
+    }
+stages{
+    stage('Gitclone'){
+        steps{
+            sh "echo Git Clone"
+            git credentialsId: 'git_ID', url: 'https://github.com/Airuoyuwa/web-app.git'
+        }
+    }
+    stage("check git-secrets"){
+        steps{
+            sh 'rm trufflehog || true'
+            sh 'docker run gesellix/trufflehog --json https://github.com/Airuoyuwa/web-app.git > trufflehog'
+            sh 'cat trufflehog'
+        }
+    }
+    stage('Build'){
+        steps{
+            sh "echo Start Build"
+            sh "mvn clean package"
+        }
+    }
+    
+}
+}
