@@ -19,10 +19,10 @@ stages{
     }
     stage('source composition analysis'){
         steps{
-        sh 'rm owasp-dependecy-check.sh || true '
-        sh 'wget https://raw.githubusercontent.com/Airuoyuwa/web-app/master/owasp-dependecy-check.sh'
-        sh 'chmod +x owasp-dependecy-check.sh'
-        sh 'sh owasp-dependecy-check.sh'
+        sh 'rm owasp* || true '
+        sh 'wget "https://raw.githubusercontent.com/Airuoyuwa/web-app/master/owasp-dependency-check.sh" '
+        sh 'chmod +x owasp-dependency-check.sh'
+        sh 'sh owasp-dependency-check.sh'
         sh 'cat /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml '
         }
      }
