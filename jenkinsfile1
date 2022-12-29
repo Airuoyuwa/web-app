@@ -22,7 +22,8 @@ stages{
         sh 'rm owasp-dependecy-check.sh || true '
         sh 'wget https://raw.githubusercontent.com/Airuoyuwa/web-app/master/owasp-dependecy-check.sh'
         sh 'chmod +x owasp-dependecy-check.sh'
-        sh 'bash owasp-dependecy-check.sh'
+        sh 'sh owasp-dependecy-check.sh'
+        sh 'cat /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml '
         }
      }
     
